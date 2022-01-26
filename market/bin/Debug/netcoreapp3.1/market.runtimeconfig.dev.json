@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/pislify/.dotnet/store/|arch|/|tfm|",
+      "/home/pislify/.nuget/packages"
+    ]
+  }
+}

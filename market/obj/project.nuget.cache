@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "lUIW/LhjPvAXYFdd4zBhSV4eR5vfTFwrnUOHwGOpUOuwwmoFXMGGPP8IftgmrVOSWTT8/U8Mhc1sYYz1t2iMhw==",
+  "success": true,
+  "projectFilePath": "/home/pislify/dev/market/market.csproj",
+  "expectedPackageFiles": [
+    "/home/pislify/.nuget/packages/raylib-cs/3.7.0.1/raylib-cs.3.7.0.1.nupkg.sha512",
+    "/home/pislify/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
