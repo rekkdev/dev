@@ -25,7 +25,36 @@ app.get('/give/:name1/:am/:password' , function(req, res)
 {
 	for (var i = 0; i <fs.readFileSync('data','utf-8').split('\n').length; i++)
 	{
-		if(fs.readFileSync('data','utf-8').split('\n')[i].split(':')[0] == req.params.name1 && Number(req.params.amount) >=0)
+		if(fs.readFileSync('data','utf-8').split('\n')[i].split(':')[0] == req.params.name1)
+		{
+			for(var j = 0; j < fs.readFileSync('data','utf-8').split('\n').length; j++)
+			{
+				if(fs.readFileSync('data','utf-8').split('\n')[j].split(':')[3] == req.params.password)
+				{
+					var ppl = Person[fs.readFileSync('data','utf-8').split('\n').length];
+					for (var k = 0; k < fs.readFileSync('data','utf-8').split('\n').length; k++)
+					{
+						let a = Person(
+							fs.readFileSync('data','utf-8').split('\n')[k].split(':')[0],
+							fs.readFileSync('data','utf-8').split('\n')[k].split(':')[1],
+							fs.readFileSync('data','utf-8').split('\n')[k].split(':')[2]
+						);
+						ppl.push(
+							a
+						);
+					}
+					ppl[j].amount -=Math.abs( Number(req.params.amount));
+					ppl[i].amount += Math.abs(Number(req.params.amount));
+					var out = "";
+					for (var s = 0; s < ppl.length; s++) {
+						out += s==0 ? "" : "\n";
+						out += ppl[s].name + ":" + String(ppl[s].amount) + ":" + ppl[s].password;
+					}
+					fs.writeFileSync('data',out);
+				}
+			}
+		}
+		else
 		{
 			for(var j = 0; j < fs.readFileSync('data','utf-8').split('\n').length; j++)
 			{
@@ -54,17 +83,18 @@ app.get('/give/:name1/:am/:password' , function(req, res)
 				}
 			}
 		}
-		else{
-			for(var j = 0; j < fs.readFileSync('history','utf-8').split('\n').length; j++)
-			{
-				if(fs.readFileSync('history','utf-8').split('\n')[j].split(':')[3] == req.params.password)
-				{
-					
-				}
-			}
-		}
 	}
 })
+
+function aaaaa() {
+	var b = fs.readFileSync('data','utf-8');
+	var out = "";
+	for (var i=0; i< b.split('\n').length; i++) {
+		out += "<h1>"+b.split('\n')[i].split(':')[0]+"<h1>";
+		out += "<h2>"+b.split('\n')[i].split(':')[1]+" Pcoins<h2>";
+	}
+	return out;
+}
 app.get('/',function(req, res) {
 	UpdateHistory();
 
@@ -103,7 +133,7 @@ app.get('/',function(req, res) {
 	  data: {
 		labels: xValues,
 		datasets: [{
-			lineTension: 0.5,
+			lineTension: 0.2,
 			borderColor: "rgba(255,0,0,1)",
 			fill: true,
 		  data: yValues
@@ -115,7 +145,7 @@ app.get('/',function(req, res) {
 	}); 
 
 	</script>
-
+	${aaaaa()}
 	`);
 });
 app.listen(80,function() {console.log('susu')});
